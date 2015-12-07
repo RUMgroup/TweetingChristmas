@@ -1,0 +1,7 @@
+"id","tweet","emotion"
+1,"bla bla blwdadadub1",NA
+2,"bla bladaswd blub2",NA
+3,"bla adadsbla blub3",NA
+7,"bla badla blub7",NA
+5,"bla badla blub5",NA
+6,"blaad bla blub6",NA
