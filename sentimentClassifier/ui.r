@@ -14,7 +14,8 @@ shinyUI(fluidPage(
 			actionButton("submitPOS", "Positive", class = "btn-primary"),
 			actionButton("submitNEU", "Neutral", class = "btn-primary"),
 			actionButton("submitNEG", "Negative", class = "btn-primary"),
-			p("Classify the tweet to display a new tweet.")#,
+			textOutput("tweetCounter")
+			# p("Classify the tweet to display a new tweet.")#,
 			# actionButton("save", "Finish and save", class = "btn-primary")
 		)
 	)

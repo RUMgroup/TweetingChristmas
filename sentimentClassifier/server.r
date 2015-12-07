@@ -14,7 +14,7 @@ updateID <- function(tmp){
 
 shinyServer(function(input, output) {
 	
-	values <- reactiveValues(id=NA)
+	values <- reactiveValues(id=NA, done=sum(!is.na(tmp[,'sentiment'])))
 	# values[['id']] <- ids[counter]
 
 	# observeEvent(input$start, {
@@ -26,6 +26,7 @@ shinyServer(function(input, output) {
 		tmp[ tmp[,'id']==values[['id']] ,'sentiment'] <<- 4
 		save(tmp, file = "tweets.Christmas.sampled.RData")
 		values[['id']] <<- updateID(tmp)
+		values[['done']] <<- sum(!is.na(tmp[,'sentiment']))
 		# counter <<- counter+1
 		# values[['id']] <<- ids[counter]
 	})
@@ -33,6 +34,7 @@ shinyServer(function(input, output) {
 		tmp[ tmp[,'id']==values[['id']] ,'sentiment'] <<- 2
 		save(tmp, file = "tweets.Christmas.sampled.RData")
 		values[['id']] <<- updateID(tmp)
+		values[['done']] <<- sum(!is.na(tmp[,'sentiment']))
 		# counter <<- counter+1
 		# values[['id']] <<- ids[counter]
 	})
@@ -40,6 +42,7 @@ shinyServer(function(input, output) {
 		tmp[ tmp[,'id']==values[['id']] ,'sentiment'] <<- 0
 		save(tmp, file = "tweets.Christmas.sampled.RData")
 		values[['id']] <<- updateID(tmp)
+		values[['done']] <<- sum(!is.na(tmp[,'sentiment']))
 		# counter <<- counter+1
 		# values[['id']] <<- ids[counter]
 	})
@@ -53,6 +56,10 @@ shinyServer(function(input, output) {
 	output$tweet <- renderText({ 
 		as.character(tmp[ values[['id']] ,'text'])
 		# ifelse(is.na(values[['id']]), 'Press start', as.character(tmp[ values[['id']] ,'text']))
+	})
+	
+	output$tweetCounter <- renderText({ 
+		paste('You finished',values[['done']] ,'tweets!')
 	})
 	
 })
